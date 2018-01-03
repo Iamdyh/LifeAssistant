@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectStorageHelper">
     <option name="apkLocation" value="E:\AndroidProject\LifeAssistant\app\build\outputs\apk\app-debug.apk" />
+    <option name="packageName" value="cn.com.dyhdev.lifeassistant" />
     <option name="projectName" value="LifeAssistant" />
   </component>
 </project>
