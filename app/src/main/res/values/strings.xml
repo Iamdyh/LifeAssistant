@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">LifeAssistant</string>
+    <string name="app_name">生活助手</string>
+    <string name="voice_chat">语音助手</string>
+    <string name="wechat_articles">微信精选</string>
+    <string name="beauty_albums">美女相册</string>
+    <string name="personal_center">个人中心</string>
+    <string name="setting">设置</string>
 </resources>
