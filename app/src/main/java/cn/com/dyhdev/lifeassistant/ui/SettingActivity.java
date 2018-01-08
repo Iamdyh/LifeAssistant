@@ -1,9 +1,10 @@
-package cn.com.dyhdev.lifeassistant.view;
+package cn.com.dyhdev.lifeassistant.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import cn.com.dyhdev.lifeassistant.R;
+import cn.com.dyhdev.lifeassistant.ui.BaseActivity;
 
 /**
  * 项目名:     LifeAssistant

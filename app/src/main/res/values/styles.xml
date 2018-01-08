@@ -8,6 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="NoTitleTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <!--主题分割线，null表示去掉分割线-->
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
 
 
 </resources>

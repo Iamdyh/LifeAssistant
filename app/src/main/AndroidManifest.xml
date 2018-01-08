@@ -10,18 +10,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+        <!--闪屏页-->
+        <activity
+            android:name=".ui.SplashActivity"
+            android:theme="@style/NoTitleTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.SettingActivity"
+        <!--设置页-->
+        <activity
+            android:name=".ui.SettingActivity"
             android:label="@string/setting">
-
         </activity>
+
+        <!--首页-->
+        <activity
+            android:name=".ui.MainActivity">
+        </activity>
+
+        <!--引导页-->
+        <activity
+            android:name=".ui.GuideActivity">
+        </activity>
+
+
     </application>
 
 </manifest>

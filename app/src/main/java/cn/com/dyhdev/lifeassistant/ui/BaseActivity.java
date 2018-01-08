@@ -1,4 +1,4 @@
-package cn.com.dyhdev.lifeassistant.view;
+package cn.com.dyhdev.lifeassistant.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

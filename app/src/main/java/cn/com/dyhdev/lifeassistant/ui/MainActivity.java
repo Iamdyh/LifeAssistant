@@ -1,8 +1,7 @@
-package cn.com.dyhdev.lifeassistant;
+package cn.com.dyhdev.lifeassistant.ui;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -10,17 +9,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.com.dyhdev.lifeassistant.R;
 import cn.com.dyhdev.lifeassistant.fragment.ArticleFragment;
 import cn.com.dyhdev.lifeassistant.fragment.PictureFragment;
 import cn.com.dyhdev.lifeassistant.fragment.UserFragment;
 import cn.com.dyhdev.lifeassistant.fragment.VoiceFragment;
-import cn.com.dyhdev.lifeassistant.view.SettingActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
