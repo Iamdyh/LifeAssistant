@@ -34,7 +34,8 @@
 
         <!--引导页-->
         <activity
-            android:name=".ui.GuideActivity">
+            android:name=".ui.GuideActivity"
+            android:theme="@style/NoTitleTheme">
         </activity>
 
 

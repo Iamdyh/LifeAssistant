@@ -1,8 +1,19 @@
 package cn.com.dyhdev.lifeassistant.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import cn.com.dyhdev.lifeassistant.R;
 
@@ -15,10 +26,185 @@ import cn.com.dyhdev.lifeassistant.R;
  * 描述:       引导页
  */
 
-public class GuideActivity extends AppCompatActivity {
+public class GuideActivity extends AppCompatActivity implements View.OnClickListener {
+
+    //viewpager
+    private ViewPager mViewPager;
+    //容器
+    private List<View> mViewList = new ArrayList<>();
+    private View view_01, view_02, view_03, view_04;
+    //小圆点
+    private ImageView point_01, point_02, point_03, point_04;
+    //引导页跳过
+    private ImageView image_jump;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guide);
+
+        initview();
+    }
+
+    /**
+     * 初始化view
+     */
+    private void initview(){
+
+        mViewPager = (ViewPager) findViewById(R.id.id_guide_viewpager);
+
+        point_01 = (ImageView) findViewById(R.id.id_img_point_01);
+        point_02 = (ImageView) findViewById(R.id.id_img_point_02);
+        point_03 = (ImageView) findViewById(R.id.id_img_point_03);
+        point_04 = (ImageView) findViewById(R.id.id_img_point_04);
+
+        image_jump = (ImageView) findViewById(R.id.id_img_jump);
+        image_jump.setOnClickListener(this);
+
+        //设置小圆点的默认图片
+        setPointImage(true, false, false, false);
+
+        view_01 = View.inflate(this, R.layout.view_page_item_one, null);
+        view_02 = View.inflate(this, R.layout.view_page_item_two, null);
+        view_03 = View.inflate(this, R.layout.view_page_item_three, null);
+        view_04 = View.inflate(this, R.layout.view_page_item_four, null);
+
+        //给buttn设置点击事件
+        view_04.findViewById(R.id.id_btn_start).setOnClickListener(this);
+
+        mViewList.add(view_01);
+        mViewList.add(view_02);
+        mViewList.add(view_03);
+        mViewList.add(view_04);
+
+        //设置适配器
+        mViewPager.setAdapter(new GuideAdapter());
+
+        //监听ViewPager滑动
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            //pager切换，
+            @Override
+            public void onPageSelected(int position) {
+                switch (position){
+                    case 0:
+                        setPointImage(true, false, false, false);
+                        image_jump.setVisibility(View.VISIBLE);
+                        point_01.setVisibility(View.VISIBLE);
+                        point_02.setVisibility(View.VISIBLE);
+                        point_03.setVisibility(View.VISIBLE);
+                        point_04.setVisibility(View.VISIBLE);
+                        break;
+                    case 1:
+                        setPointImage(false, true, false, false);
+                        image_jump.setVisibility(View.VISIBLE);
+                        point_01.setVisibility(View.VISIBLE);
+                        point_02.setVisibility(View.VISIBLE);
+                        point_03.setVisibility(View.VISIBLE);
+                        point_04.setVisibility(View.VISIBLE);
+                        break;
+                    case 2:
+                        setPointImage(false, false, true, false);
+                        image_jump.setVisibility(View.VISIBLE);
+                        point_01.setVisibility(View.VISIBLE);
+                        point_02.setVisibility(View.VISIBLE);
+                        point_03.setVisibility(View.VISIBLE);
+                        point_04.setVisibility(View.VISIBLE);
+                        break;
+                    case 3:
+                        setPointImage(false, false, false,true);
+                        image_jump.setVisibility(View.GONE);
+                        point_01.setVisibility(View.GONE);
+                        point_02.setVisibility(View.GONE);
+                        point_03.setVisibility(View.GONE);
+                        point_04.setVisibility(View.GONE);
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.id_btn_start:
+            case R.id.id_img_jump:
+                startActivity(new Intent(this, MainActivity.class));
+                finish();
+                break;
+        }
+    }
+
+    class GuideAdapter extends PagerAdapter{
+        //设置item数量
+        @Override
+        public int getCount() {
+            return mViewList.size();
+        }
+        //对比，是否滑动、切换
+        @Override
+        public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+            return view == object;
+        }
+        //添加item
+        @NonNull
+        @Override
+        public Object instantiateItem(@NonNull ViewGroup container, int position) {
+            ((ViewPager) container).addView(mViewList.get(position));
+           return mViewList.get(position);
+        }
+        //删除item
+
+
+        @Override
+        public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+            ((ViewPager) container).removeView(mViewList.get(position));
+        }
+    }
+
+    /**
+     * 设置小圆点的状态
+     * @param isSelect_01
+     * @param isSelect_02
+     * @param isSelect_03
+     */
+    private void setPointImage(boolean isSelect_01, boolean isSelect_02, boolean isSelect_03, boolean isSelect_04){
+        if(isSelect_01){
+            point_01.setBackgroundResource(R.drawable.point_on);
+        }else{
+            point_01.setBackgroundResource(R.drawable.point_off);
+        }
+
+        if(isSelect_02){
+            point_02.setBackgroundResource(R.drawable.point_on);
+        }else{
+            point_02.setBackgroundResource(R.drawable.point_off);
+        }
+
+        if(isSelect_03){
+            point_03.setBackgroundResource(R.drawable.point_on);
+        }else{
+            point_03.setBackgroundResource(R.drawable.point_off);
+        }
+
+        if(isSelect_04){
+//            point_01.setVisibility(View.GONE);
+//            point_02.setVisibility(View.GONE);
+//            point_03.setVisibility(View.GONE);
+//            point_04.setVisibility(View.GONE);
+
+        }else{
+            point_04.setBackgroundResource(R.drawable.point_off);
+        }
     }
 }

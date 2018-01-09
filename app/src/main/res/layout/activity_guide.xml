@@ -1,14 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:layout_height="match_parent">
 
-    <TextView
+    <android.support.v4.view.ViewPager
+        android:id="@+id/id_guide_viewpager"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="引导页"
-        android:textSize="50sp"/>
+        android:layout_height="wrap_content">
+    </android.support.v4.view.ViewPager>
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp">
+
+        <ImageView
+            android:id="@+id/id_img_point_01"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <ImageView
+            android:id="@+id/id_img_point_02"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="8dp"/>
+        <ImageView
+            android:id="@+id/id_img_point_03"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="4dp"/>
+        <ImageView
+            android:id="@+id/id_img_point_04"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/id_img_jump"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/icon_jump"/>
+
+
+</RelativeLayout>
