@@ -11,6 +11,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.tencent.bugly.crashreport.CrashReport;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +45,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initData();
 
         initView();
+
+        //测试bugly
+//        CrashReport.testJavaCrash();
     }
 
     /**

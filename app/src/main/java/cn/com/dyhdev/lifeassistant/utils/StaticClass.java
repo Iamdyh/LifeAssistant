@@ -17,4 +17,7 @@ public class StaticClass {
     //判断程序是否是第一次运行
     public static final String SHARED_IS_FIRST_RUN = "is_first_run";
 
+    //Bugly的AppId
+    public static final String BUGLY_APPID= "945d426b5b";
+
 }

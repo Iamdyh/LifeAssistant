@@ -2,6 +2,11 @@ package cn.com.dyhdev.lifeassistant.application;
 
 import android.app.Application;
 
+//腾讯bugly
+import com.tencent.bugly.crashreport.CrashReport;
+
+import cn.com.dyhdev.lifeassistant.utils.StaticClass;
+
 /**
  * 项目名:     LifeAssistant
  * 包名:       cn.com.dyhdev.lifeassistant.application
@@ -17,5 +22,8 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        //初始化腾讯bugly：logcat中TAG = CrashReportInfo
+        CrashReport.initCrashReport(getApplicationContext(), StaticClass.BUGLY_APPID, true);
     }
 }

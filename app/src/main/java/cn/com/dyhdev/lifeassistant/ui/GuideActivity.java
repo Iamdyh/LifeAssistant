@@ -93,35 +93,19 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
                 switch (position){
                     case 0:
                         setPointImage(true, false, false, false);
-                        image_jump.setVisibility(View.VISIBLE);
-                        point_01.setVisibility(View.VISIBLE);
-                        point_02.setVisibility(View.VISIBLE);
-                        point_03.setVisibility(View.VISIBLE);
-                        point_04.setVisibility(View.VISIBLE);
+                        setPointStatus(View.VISIBLE);
                         break;
                     case 1:
                         setPointImage(false, true, false, false);
-                        image_jump.setVisibility(View.VISIBLE);
-                        point_01.setVisibility(View.VISIBLE);
-                        point_02.setVisibility(View.VISIBLE);
-                        point_03.setVisibility(View.VISIBLE);
-                        point_04.setVisibility(View.VISIBLE);
+                        setPointStatus(View.VISIBLE);
                         break;
                     case 2:
                         setPointImage(false, false, true, false);
-                        image_jump.setVisibility(View.VISIBLE);
-                        point_01.setVisibility(View.VISIBLE);
-                        point_02.setVisibility(View.VISIBLE);
-                        point_03.setVisibility(View.VISIBLE);
-                        point_04.setVisibility(View.VISIBLE);
+                        setPointStatus(View.VISIBLE);
                         break;
                     case 3:
                         setPointImage(false, false, false,true);
-                        image_jump.setVisibility(View.GONE);
-                        point_01.setVisibility(View.GONE);
-                        point_02.setVisibility(View.GONE);
-                        point_03.setVisibility(View.GONE);
-                        point_04.setVisibility(View.GONE);
+                        setPointStatus(View.GONE);
                         break;
                 }
             }
@@ -206,5 +190,14 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
         }else{
             point_04.setBackgroundResource(R.drawable.point_off);
         }
+    }
+
+    private void setPointStatus(int visibilityStatus){
+
+        image_jump.setVisibility(visibilityStatus);
+        point_01.setVisibility(visibilityStatus);
+        point_02.setVisibility(visibilityStatus);
+        point_03.setVisibility(visibilityStatus);
+        point_04.setVisibility(visibilityStatus);
     }
 }

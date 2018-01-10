@@ -10,7 +10,7 @@
         android:id="@+id/id_btn_start"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="350dp"
         android:text="@string/start_enter_main"
         android:textColor="@android:color/white"
         android:background="@drawable/button_bg"/>
