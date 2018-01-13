@@ -5,6 +5,7 @@ import android.app.Application;
 //腾讯bugly
 import com.tencent.bugly.crashreport.CrashReport;
 
+import cn.bmob.v3.Bmob;
 import cn.com.dyhdev.lifeassistant.utils.StaticClass;
 
 /**
@@ -25,5 +26,8 @@ public class BaseApplication extends Application {
 
         //初始化腾讯bugly：logcat中TAG = CrashReportInfo
         CrashReport.initCrashReport(getApplicationContext(), StaticClass.BUGLY_APPID, true);
+
+        //初始化Bomb
+        Bmob.initialize(this, StaticClass.BOMB_APPID);
     }
 }

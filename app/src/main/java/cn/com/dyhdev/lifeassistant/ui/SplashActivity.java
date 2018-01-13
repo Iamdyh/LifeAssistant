@@ -40,7 +40,7 @@ public class SplashActivity extends AppCompatActivity {
                     }else{
                         //不是第一次运行就跳转到首页
 //                        startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                        startActivity(new Intent(SplashActivity.this, GuideActivity.class));
+                        startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                     }
                     //去掉闪屏页
                     finish();

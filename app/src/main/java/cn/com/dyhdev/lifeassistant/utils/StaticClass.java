@@ -20,4 +20,7 @@ public class StaticClass {
     //Bugly的AppId
     public static final String BUGLY_APPID= "945d426b5b";
 
+    //Bomb的AppId
+    public static final String BOMB_APPID="428a8ffb18cf7a371678c53333723dd7";
+
 }
