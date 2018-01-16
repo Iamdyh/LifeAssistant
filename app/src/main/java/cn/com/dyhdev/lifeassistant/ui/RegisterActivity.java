@@ -140,8 +140,11 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     Toast.makeText(RegisterActivity.this, R.string.register_success, Toast.LENGTH_SHORT).show();
                     finish();
                 }else{
-                    Log.i(TAG, "done: " + e + "");
-                    Toast.makeText(RegisterActivity.this, R.string.register_failed, Toast.LENGTH_SHORT).show();
+                    Log.i(TAG, "done: " + e.toString());
+                    if(e.toString().contains("203")){
+                        Toast.makeText(RegisterActivity.this, R.string.register_failed_203, Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             }
         });

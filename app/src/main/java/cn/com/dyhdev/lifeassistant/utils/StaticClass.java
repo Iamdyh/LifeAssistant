@@ -23,4 +23,19 @@ public class StaticClass {
     //Bomb的AppId
     public static final String BOMB_APPID="428a8ffb18cf7a371678c53333723dd7";
 
+
+
+
+    //默认值
+    public static final String DEFAULT_VALUE = "";
+
+    //username的key
+    public static final String USERNAME_KEY="username";
+
+    //password的key
+    public static final String PASSWORD_KEY="password";
+
+    //checkBox的key
+    public static final String REMEMBER_PASS="remember_pass";
+
 }
