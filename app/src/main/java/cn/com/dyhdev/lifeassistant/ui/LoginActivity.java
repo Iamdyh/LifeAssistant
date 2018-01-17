@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.bmob.v3.exception.BmobException;
@@ -35,6 +36,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText mEtName;
     private EditText mEtPass;
     private CheckBox mCheckBox;    //是否记住密码
+    private TextView mTVForget;    //忘记密码
 
     private String username;
     private String password;
@@ -52,7 +54,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         mEtName = (EditText)findViewById(R.id.id_login_et_user);
         mEtPass = (EditText)findViewById(R.id.id_login_et_password);
+        mTVForget = (TextView)findViewById(R.id.id_tv_fgpassword);
+        mTVForget.setOnClickListener(this);
+
         mBtnLogin = (Button)findViewById(R.id.id_btn_login);
+
         mBtnLogin.setOnClickListener(this);
 
         mCheckBox = (CheckBox)findViewById(R.id.id_checkbox);
@@ -74,6 +80,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.id_btn_register:
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                break;
+            case R.id.id_tv_fgpassword:
+                startActivity(new Intent(this, ForgetPasswordActivity.class));
                 break;
         }
     }
