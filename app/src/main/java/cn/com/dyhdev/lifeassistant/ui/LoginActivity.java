@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -19,6 +20,7 @@ import cn.com.dyhdev.lifeassistant.R;
 import cn.com.dyhdev.lifeassistant.entity.User;
 import cn.com.dyhdev.lifeassistant.utils.SharedUtils;
 import cn.com.dyhdev.lifeassistant.utils.StaticClass;
+import cn.com.dyhdev.lifeassistant.view.CustomDialog;
 
 /**
  * 项目名:     LifeAssistant
@@ -40,6 +42,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private String username;
     private String password;
+
+    private CustomDialog dialog;    //自定义dialog
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +67,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         mCheckBox = (CheckBox)findViewById(R.id.id_checkbox);
 
+        dialog = new CustomDialog(this, 230, 230, R.layout.dialog_loading,R.style.Theme_dialog, Gravity.CENTER, R.style.pop_anim_style);
+        //屏幕外点击无效
+        dialog.setCancelable(false);
+
         //设置选中的状态, 默认为false
         boolean isCheck = SharedUtils.getBoolean(this, StaticClass.REMEMBER_PASS, false);
         mCheckBox.setChecked(isCheck);
@@ -70,6 +78,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             mEtName.setText(SharedUtils.getString(this, StaticClass.USERNAME_KEY, StaticClass.DEFAULT_VALUE));
             mEtPass.setText(SharedUtils.getString(this, StaticClass.PASSWORD_KEY, StaticClass.DEFAULT_VALUE));
         }
+
+
     }
 
     @Override
@@ -104,12 +114,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void doLogin(String username, String password){
         //判断是否为空
         if(!TextUtils.isEmpty(username) & ! TextUtils.isEmpty(password)){
+
+            dialog.show();
+
             User user = new User();
             user.setUsername(username);
             user.setPassword(password);
             user.login(new SaveListener<User>() {
                 @Override
                 public void done(User user, BmobException e) {
+                    dialog.dismiss();
                     //登录成功
                     if(e == null){
                         //判断邮箱是否验证

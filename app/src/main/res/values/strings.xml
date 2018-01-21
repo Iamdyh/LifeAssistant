@@ -34,4 +34,5 @@
     <string name="email_have_send">邮箱已发送至: </string>
     <string name="password_modify_success">修改密码成功！</string>
     <string name="password_modify_failed">修改密码失败！</string>
+    <string name="text_dialog_loading">正在加载</string>
 </resources>
