@@ -9,6 +9,7 @@
     <string name="username">用户名</string>
     <string name="password">密码</string>
     <string name="login">登录</string>
+    <string name="modify">修改</string>
     <string name="register">注册</string>
     <string name="now_password">旧密码</string>
     <string name="new_password">新密码</string>

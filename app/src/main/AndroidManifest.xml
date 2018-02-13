@@ -57,6 +57,9 @@
         <activity
             android:name=".ui.RegisterActivity"
             android:label="@string/register" />
+        <!-- 修改密码-->
+        <activity android:name=".ui.ModifyPasswordActivity"
+            android:label="@string/modify"/>
         <!-- 忘记密码 -->
         <activity android:name=".ui.ForgetPasswordActivity"
             android:label="@string/fgpassword"/>

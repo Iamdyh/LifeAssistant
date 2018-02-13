@@ -123,7 +123,7 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()){
             case R.id.id_btn_start:
             case R.id.id_img_jump:
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, LoginActivity.class));
                 finish();
                 break;
         }

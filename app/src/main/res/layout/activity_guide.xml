@@ -47,7 +47,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/icon_jump"/>
+        android:src="@drawable/jump"/>
 
 
 </RelativeLayout>

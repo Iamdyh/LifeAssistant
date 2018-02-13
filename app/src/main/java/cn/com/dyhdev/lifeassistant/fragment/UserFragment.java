@@ -21,6 +21,7 @@ import cn.bmob.v3.listener.UpdateListener;
 import cn.com.dyhdev.lifeassistant.R;
 import cn.com.dyhdev.lifeassistant.entity.User;
 import cn.com.dyhdev.lifeassistant.ui.LoginActivity;
+import cn.com.dyhdev.lifeassistant.ui.ModifyPasswordActivity;
 
 /**
  * 项目名:     LifeAssistant
@@ -102,7 +103,7 @@ public class UserFragment extends Fragment implements View.OnClickListener {
                 break;
             //修改密码
             case R.id.id_btn_modify_password:
-
+                startActivity(new Intent(getActivity(), ModifyPasswordActivity.class));
                 break;
 
             //退出登录

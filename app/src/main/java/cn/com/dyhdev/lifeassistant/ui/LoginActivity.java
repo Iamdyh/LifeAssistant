@@ -43,12 +43,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private String username;
     private String password;
 
+    public static User myUser;
+
     private CustomDialog dialog;    //自定义dialog
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        myUser = new User();
         initView();
     }
 
@@ -117,10 +119,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             dialog.show();
 
-            User user = new User();
-            user.setUsername(username);
-            user.setPassword(password);
-            user.login(new SaveListener<User>() {
+//            User user = new User();
+            myUser.setUsername(username);
+            myUser.setPassword(password);
+            myUser.login(new SaveListener<User>() {
                 @Override
                 public void done(User user, BmobException e) {
                     dialog.dismiss();
@@ -144,12 +146,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    /**
-     * 当用户输入用户名和密码，但是不点击登录，而是直接退出了
-     */
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        saveStatus();
+    }
+
+    /**
+     * 当用户输入用户名和密码，但是不点击登录，而是直接退出了
+     */
+    private void saveStatus(){
         //保存状态
         SharedUtils.putBoolean(this, StaticClass.REMEMBER_PASS, mCheckBox.isChecked());
 
