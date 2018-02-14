@@ -2,6 +2,13 @@ package cn.com.dyhdev.lifeassistant.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.util.Base64;
+
+import java.io.ByteArrayOutputStream;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * 项目名:     LifeAssistant
@@ -58,4 +65,6 @@ public class SharedUtils {
         SharedPreferences sp = context.getSharedPreferences(NAME, Context.MODE_PRIVATE);
         sp.edit().clear().commit();
     }
+
+
 }

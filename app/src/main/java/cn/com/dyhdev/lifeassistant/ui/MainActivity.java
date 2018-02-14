@@ -11,25 +11,35 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.tencent.bugly.crashreport.CrashReport;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.com.dyhdev.lifeassistant.R;
 import cn.com.dyhdev.lifeassistant.fragment.ArticleFragment;
 import cn.com.dyhdev.lifeassistant.fragment.PictureFragment;
 import cn.com.dyhdev.lifeassistant.fragment.UserFragment;
 import cn.com.dyhdev.lifeassistant.fragment.VoiceFragment;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity{
 
     private static final String TAG = "MainActivity";
-    private TabLayout mTabLayout;
-    private ViewPager mViewPager;
+
+
+    @BindView(R.id.id_tabLayout)
+    TabLayout mTabLayout;
+    @BindView(R.id.id_viewpager)
+    ViewPager mViewPager;
+    @BindView(R.id.id_fab_setting)
+    FloatingActionButton mFabSetting; //悬浮按钮
+
     private List<String> mTitles;        //标题数据源
     private List<Fragment> mFragments;
-    private FloatingActionButton mFabSetting; //悬浮按钮
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         setContentView(R.layout.activity_main);
 
-
+        ButterKnife.bind(this);
 
         //去掉tablayout上的阴影
         getSupportActionBar().setElevation(0);
@@ -73,12 +83,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private void initView(){
 
-        mTabLayout = (TabLayout) findViewById(R.id.id_tabLayout);
-        mViewPager = (ViewPager) findViewById(R.id.id_viewpager);
-        mFabSetting = (FloatingActionButton) findViewById(R.id.id_fab_setting);
+//        mTabLayout = (TabLayout) findViewById(R.id.id_tabLayout);
+//        mViewPager = (ViewPager) findViewById(R.id.id_viewpager);
+//        mFabSetting = (FloatingActionButton) findViewById(R.id.id_fab_setting);
 
         //设置悬浮按钮点击事件
-        mFabSetting.setOnClickListener(this);
+//        mFabSetting.setOnClickListener(this);
         //设置按钮默认隐藏
         mFabSetting.setVisibility(View.GONE);
 
@@ -134,13 +144,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTabLayout.setupWithViewPager(mViewPager);
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
+    @OnClick(R.id.id_fab_setting)
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
             case R.id.id_fab_setting:
                 Intent intent = new Intent(MainActivity.this, SettingActivity.class);
                 startActivity(intent);
                 break;
         }
     }
+
+
+//    @Override
+//    public void onClick(View v) {
+//        switch (v.getId()){
+//            case R.id.id_fab_setting:
+//                Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+//                startActivity(intent);
+//                break;
+//        }
+//    }
 }

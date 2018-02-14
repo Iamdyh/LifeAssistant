@@ -13,12 +13,16 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/user_frgament_bg">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" 
-                android:src="@mipmap/ic_launcher"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/id_profile_image"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@drawable/add_pic"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/colorPrimary"/>
             <TextView
                 android:id="@+id/id_edit_userinfo"
                 android:layout_width="100dp"

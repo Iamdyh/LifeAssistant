@@ -10,13 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import cn.bmob.v3.BmobUser;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.com.dyhdev.lifeassistant.R;
 import cn.com.dyhdev.lifeassistant.entity.User;
-
-import static cn.com.dyhdev.lifeassistant.ui.LoginActivity.myUser;
 
 /**
  * 项目名:     LifeAssistant
@@ -27,40 +27,58 @@ import static cn.com.dyhdev.lifeassistant.ui.LoginActivity.myUser;
  * 描述:       修改密码类
  */
 
-public class ModifyPasswordActivity extends BaseActivity implements View.OnClickListener {
+public class ModifyPasswordActivity extends BaseActivity {
     private static final String TAG = "ModifyPasswordActivity";
-    private EditText mEtNowPass;
-    private EditText mEtNewPass;
-    private EditText mEtNewPass2;
-    private Button mBtnModify;
+    @BindView(R.id.id_now_password)
+    EditText mEtNowPass;
+    @BindView(R.id.id_new_password)
+    EditText mEtNewPass;
+    @BindView(R.id.id_new_password_2)
+    EditText mEtNewPass2;
+    @BindView(R.id.id_btn_modify)
+    Button mBtnModify;
+//    private EditText mEtNowPass;
+//    private EditText mEtNewPass;
+//    private EditText mEtNewPass2;
+//    private Button mBtnModify;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_modify_password);
-        initView();
+        ButterKnife.bind(this);
+//        initView();
     }
 
-    private void initView() {
-        mEtNowPass = (EditText)findViewById(R.id.id_now_password);
-        mEtNewPass = (EditText)findViewById(R.id.id_new_password);
-        mEtNewPass2 = (EditText)findViewById(R.id.id_new_password_2);
-        mBtnModify = (Button)findViewById(R.id.id_btn_modify);
-        mBtnModify.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
+//    private void initView() {
+//        mEtNowPass = (EditText) findViewById(R.id.id_now_password);
+//        mEtNewPass = (EditText) findViewById(R.id.id_new_password);
+//        mEtNewPass2 = (EditText) findViewById(R.id.id_new_password_2);
+//        mBtnModify = (Button) findViewById(R.id.id_btn_modify);
+//        mBtnModify.setOnClickListener(this);
+//    }
+    @OnClick(R.id.id_btn_modify)
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
             case R.id.id_btn_modify:
                 getPassData();
                 break;
         }
     }
 
+//    @Override
+//    public void onClick(View v) {
+//        switch (v.getId()) {
+//            case R.id.id_btn_modify:
+//                getPassData();
+//                break;
+//        }
+//    }
+
     /**
      * 获取数据
      */
-    private void getPassData(){
+    private void getPassData() {
         String now_pass = mEtNowPass.getText().toString().trim();
         String new_pass = mEtNewPass.getText().toString().trim();
         String new_pass2 = mEtNewPass2.getText().toString().trim();
@@ -82,12 +100,14 @@ public class ModifyPasswordActivity extends BaseActivity implements View.OnClick
             Toast.makeText(this, R.string.et_remind, Toast.LENGTH_SHORT).show();
         }
     }
+
     /**
      * 修改密码
+     *
      * @param old_pass
      * @param new_pass
      */
-    private void updatePassword(String old_pass, String new_pass){
+    private void updatePassword(String old_pass, String new_pass) {
         //使用Bmob的方法修改密码
 
         User.updateCurrentUserPassword(old_pass, new_pass, new UpdateListener() {
@@ -103,5 +123,6 @@ public class ModifyPasswordActivity extends BaseActivity implements View.OnClick
             }
         });
     }
+
 
 }

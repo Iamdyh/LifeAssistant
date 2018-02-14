@@ -7,14 +7,17 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.com.dyhdev.lifeassistant.R;
 
 /**
@@ -26,51 +29,77 @@ import cn.com.dyhdev.lifeassistant.R;
  * 描述:       引导页
  */
 
-public class GuideActivity extends AppCompatActivity implements View.OnClickListener {
+public class GuideActivity extends AppCompatActivity {
 
     //viewpager
-    private ViewPager mViewPager;
+    @BindView(R.id.id_guide_viewpager)
+    ViewPager mViewPager;
+    //小圆点
+    @BindView(R.id.id_img_point_01)
+    ImageView point_01;
+    @BindView(R.id.id_img_point_02)
+    ImageView point_02;
+    @BindView(R.id.id_img_point_03)
+    ImageView point_03;
+    @BindView(R.id.id_img_point_04)
+    ImageView point_04;
+    //引导页跳过
+    @BindView(R.id.id_img_jump)
+    ImageView image_jump;
+
+
+
     //容器
     private List<View> mViewList = new ArrayList<>();
-    private View view_01, view_02, view_03, view_04;
-    //小圆点
-    private ImageView point_01, point_02, point_03, point_04;
-    //引导页跳过
-    private ImageView image_jump;
+
+    View view_01;
+    View view_02;
+    View view_03;
+    View view_04;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guide);
 
+
+
+        ButterKnife.bind(this);
         initview();
     }
 
     /**
      * 初始化view
      */
-    private void initview(){
+    private void initview() {
 
-        mViewPager = (ViewPager) findViewById(R.id.id_guide_viewpager);
+        //mViewPager = (ViewPager) findViewById(R.id.id_guide_viewpager);
 
-        point_01 = (ImageView) findViewById(R.id.id_img_point_01);
-        point_02 = (ImageView) findViewById(R.id.id_img_point_02);
-        point_03 = (ImageView) findViewById(R.id.id_img_point_03);
-        point_04 = (ImageView) findViewById(R.id.id_img_point_04);
+//        point_01 = (ImageView) findViewById(R.id.id_img_point_01);
+//        point_02 = (ImageView) findViewById(R.id.id_img_point_02);
+//        point_03 = (ImageView) findViewById(R.id.id_img_point_03);
+//        point_04 = (ImageView) findViewById(R.id.id_img_point_04);
 
-        image_jump = (ImageView) findViewById(R.id.id_img_jump);
-        image_jump.setOnClickListener(this);
+//        image_jump = (ImageView) findViewById(R.id.id_img_jump);
+//        image_jump.setOnClickListener(this);
 
         //设置小圆点的默认图片
         setPointImage(true, false, false, false);
-
         view_01 = View.inflate(this, R.layout.view_page_item_one, null);
         view_02 = View.inflate(this, R.layout.view_page_item_two, null);
         view_03 = View.inflate(this, R.layout.view_page_item_three, null);
         view_04 = View.inflate(this, R.layout.view_page_item_four, null);
 
+
+
         //给buttn设置点击事件
-        view_04.findViewById(R.id.id_btn_start).setOnClickListener(this);
+        view_04.findViewById(R.id.id_btn_start).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(GuideActivity.this, LoginActivity.class));
+                finish();
+            }
+        });
 
         mViewList.add(view_01);
         mViewList.add(view_02);
@@ -90,7 +119,7 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
             //pager切换，
             @Override
             public void onPageSelected(int position) {
-                switch (position){
+                switch (position) {
                     case 0:
                         setPointImage(true, false, false, false);
                         setPointStatus(View.VISIBLE);
@@ -104,7 +133,7 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
                         setPointStatus(View.VISIBLE);
                         break;
                     case 3:
-                        setPointImage(false, false, false,true);
+                        setPointImage(false, false, false, true);
                         setPointStatus(View.GONE);
                         break;
                 }
@@ -118,34 +147,67 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    @Override
+  /*  @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.id_btn_start:
             case R.id.id_img_jump:
                 startActivity(new Intent(this, LoginActivity.class));
                 finish();
                 break;
         }
+    }*/
+
+//    @OnClick({R.id.id_btn_start, R.id.id_img_jump})
+//    public void onClick(View view) {
+//        switch (view.getId()) {
+//            case R.id.id_btn_start:
+//            case R.id.id_img_jump:
+//
+//        }
+//    }
+
+    @OnClick(R.id.id_img_jump)
+    public void onViewClicked(View view) {
+        switch (view.getId()){
+
+            case R.id.id_img_jump:
+                startActivity(new Intent(this, LoginActivity.class));
+                finish();
+                break;
+        }
+
     }
 
-    class GuideAdapter extends PagerAdapter{
+
+
+   /* @OnClick(R.id.id_btn_start)
+    public void onViewClicked(View view) {
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
+
+    }*/
+
+
+    class GuideAdapter extends PagerAdapter {
         //设置item数量
         @Override
         public int getCount() {
             return mViewList.size();
         }
+
         //对比，是否滑动、切换
         @Override
         public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
             return view == object;
         }
+
         //添加item
         @NonNull
         @Override
         public Object instantiateItem(@NonNull ViewGroup container, int position) {
             ((ViewPager) container).addView(mViewList.get(position));
-           return mViewList.get(position);
+            return mViewList.get(position);
         }
         //删除item
 
@@ -158,41 +220,42 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
 
     /**
      * 设置小圆点的状态
+     *
      * @param isSelect_01
      * @param isSelect_02
      * @param isSelect_03
      */
-    private void setPointImage(boolean isSelect_01, boolean isSelect_02, boolean isSelect_03, boolean isSelect_04){
-        if(isSelect_01){
+    private void setPointImage(boolean isSelect_01, boolean isSelect_02, boolean isSelect_03, boolean isSelect_04) {
+        if (isSelect_01) {
             point_01.setBackgroundResource(R.drawable.point_on);
-        }else{
+        } else {
             point_01.setBackgroundResource(R.drawable.point_off);
         }
 
-        if(isSelect_02){
+        if (isSelect_02) {
             point_02.setBackgroundResource(R.drawable.point_on);
-        }else{
+        } else {
             point_02.setBackgroundResource(R.drawable.point_off);
         }
 
-        if(isSelect_03){
+        if (isSelect_03) {
             point_03.setBackgroundResource(R.drawable.point_on);
-        }else{
+        } else {
             point_03.setBackgroundResource(R.drawable.point_off);
         }
 
-        if(isSelect_04){
+        if (isSelect_04) {
 //            point_01.setVisibility(View.GONE);
 //            point_02.setVisibility(View.GONE);
 //            point_03.setVisibility(View.GONE);
 //            point_04.setVisibility(View.GONE);
 
-        }else{
+        } else {
             point_04.setBackgroundResource(R.drawable.point_off);
         }
     }
 
-    private void setPointStatus(int visibilityStatus){
+    private void setPointStatus(int visibilityStatus) {
 
         image_jump.setVisibility(visibilityStatus);
         point_01.setVisibility(visibilityStatus);

@@ -3,13 +3,14 @@ package cn.com.dyhdev.lifeassistant.ui;
 
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.com.dyhdev.lifeassistant.R;
@@ -24,49 +25,65 @@ import cn.com.dyhdev.lifeassistant.entity.User;
  * 描述:       修改/忘记密码
  */
 
-public class ForgetPasswordActivity extends BaseActivity implements View.OnClickListener {
+public class ForgetPasswordActivity extends BaseActivity{
 
     private static final String TAG = "ForgetPasswordActivity";
-    private EditText mEtNowPass;
-    private EditText mEtNewPass;
-    private EditText mEtNewPass2;
-    private EditText mEtEmail;
-//    private Button mBtnModify;
-    private Button mBtnForget;
+    @BindView(R.id.id_forget_et_email)
+    EditText mEtEmail;
+    @BindView(R.id.id_forget_btn_password)
+    Button mBtnForget;
+
+//    private EditText mEtNowPass;
+//    private EditText mEtNewPass;
+//    private EditText mEtNewPass2;
+//    private EditText mEtEmail;
+//    //    private Button mBtnModify;
+//    private Button mBtnForget;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
+        ButterKnife.bind(this);
 
-        initView();
+//        initView();
     }
 
-    private void initView(){
-        mEtNowPass = (EditText)findViewById(R.id.id_now_password);
-        mEtNewPass = (EditText)findViewById(R.id.id_new_password);
-        mEtNewPass2 = (EditText)findViewById(R.id.id_new_password_2);
-        mEtEmail = (EditText)findViewById(R.id.id_forget_et_email);
-
-//        mBtnModify = (Button)findViewById(R.id.id_btn_modify);
-        mBtnForget = (Button)findViewById(R.id.id_forget_btn_password);
-
-//        mBtnModify.setOnClickListener(this);
-        mBtnForget.setOnClickListener(this);
-
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-//            case R.id.id_btn_modify:
-//                //getPassData();
-//                break;
+    @OnClick(R.id.id_forget_btn_password)
+    public void onViewClicked(View view) {
+        switch (view.getId()){
             case R.id.id_forget_btn_password:
                 getEmailData();
                 break;
-
         }
     }
+
+//    private void initView() {
+//        mEtNowPass = (EditText) findViewById(R.id.id_now_password);
+//        mEtNewPass = (EditText) findViewById(R.id.id_new_password);
+//        mEtNewPass2 = (EditText) findViewById(R.id.id_new_password_2);
+//        mEtEmail = (EditText) findViewById(R.id.id_forget_et_email);
+
+//        mBtnModify = (Button)findViewById(R.id.id_btn_modify);
+//        mBtnForget = (Button) findViewById(R.id.id_forget_btn_password);
+
+//        mBtnModify.setOnClickListener(this);
+//        mBtnForget.setOnClickListener(this);
+
+//    }
+
+//    @Override
+//    public void onClick(View v) {
+//        switch (v.getId()) {
+////            case R.id.id_btn_modify:
+////                //getPassData();
+////                break;
+//            case R.id.id_forget_btn_password:
+//                getEmailData();
+//                break;
+//
+//        }
+//    }
 
 //    private void getPassData(){
 //        String now_pass = mEtNowPass.getText().toString().trim();
@@ -91,8 +108,7 @@ public class ForgetPasswordActivity extends BaseActivity implements View.OnClick
 //    }
 
 
-
-    private void getEmailData(){
+    private void getEmailData() {
         final String email = mEtEmail.getText().toString().trim();
         forgetPassword(email);
     }
@@ -121,24 +137,27 @@ public class ForgetPasswordActivity extends BaseActivity implements View.OnClick
 
     /**
      * 忘记密码，通过邮箱重置
+     *
      * @param email
      */
-    private void forgetPassword(final String email){
-        if(!TextUtils.isEmpty(email)){
+    private void forgetPassword(final String email) {
+        if (!TextUtils.isEmpty(email)) {
             //调用Bmob的方法
             User.resetPasswordByEmail(email, new UpdateListener() {
                 @Override
                 public void done(BmobException e) {
-                    if(e == null){
+                    if (e == null) {
                         Toast.makeText(ForgetPasswordActivity.this, getString(R.string.email_have_send) + email, Toast.LENGTH_SHORT).show();
-                    }else{
+                    } else {
                         Toast.makeText(ForgetPasswordActivity.this, R.string.email_error, Toast.LENGTH_SHORT).show();
                     }
                 }
             });
-        }else{
+        } else {
             Toast.makeText(this, R.string.et_remind, Toast.LENGTH_SHORT).show();
         }
 
     }
+
+
 }
