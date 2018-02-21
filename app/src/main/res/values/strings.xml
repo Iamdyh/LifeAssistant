@@ -55,4 +55,15 @@
     <string name="no_sdcard">设备没有SD卡</string>
     <string name="open_camera_permission">请允许打开相机</string>
     <string name="open_sdcard_permission">请允许操作SD卡</string>
+    <string name="express_search">快递查询</string>
+    <string name="company_name">快递公司</string>
+    <string name="order_id">订单号</string>
+    <string name="search">查询</string>
+    <string name="remark_default">您的快件已签收</string>
+    <string name="zone_default">大连</string>
+    <string name="detetime_default">2017-12-20</string>
+    <string name="search_failed">查询失败，请再试一次</string>
+    <string name="phone_search">归属地查询</string>
+    <string name="phone">手机号</string>
+
 </resources>

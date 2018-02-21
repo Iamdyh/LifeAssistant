@@ -16,11 +16,11 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- 允许读取手机状态 用于创建BmobInstallation -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <!-- 获取拍照的权限-->
+    <!-- 获取拍照的权限 -->
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-
 
     <application
         android:name=".application.BaseApplication"
@@ -62,21 +62,31 @@
         <activity
             android:name=".ui.RegisterActivity"
             android:label="@string/register" />
-        <!-- 修改密码-->
-        <activity android:name=".ui.ModifyPasswordActivity"
-            android:label="@string/modify"/>
+        <!-- 修改密码 -->
+        <activity
+            android:name=".ui.ModifyPasswordActivity"
+            android:label="@string/modify" />
         <!-- 忘记密码 -->
-        <activity android:name=".ui.ForgetPasswordActivity"
-            android:label="@string/fgpassword"/>
+        <activity
+            android:name=".ui.ForgetPasswordActivity"
+            android:label="@string/fgpassword" />
+
         <provider
-            android:authorities="cn.com.dyhdev.lifeassistant.fileprovider"
             android:name="android.support.v4.content.FileProvider"
-            android:grantUriPermissions="true"
-            android:exported="false">
-            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/filepaths"/>
+            android:authorities="cn.com.dyhdev.lifeassistant.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
         </provider>
 
+        <!-- 快递查询 -->
+        <activity
+            android:name=".ui.ExpressActivity"
+            android:label="@string/express_search" />
+        <activity android:name=".ui.PhoneActivity"
+            android:label="@string/phone_search"></activity>
     </application>
 
 </manifest>

@@ -23,7 +23,16 @@ public class StaticClass {
     //Bomb的AppId
     public static final String BOMB_APPID="428a8ffb18cf7a371678c53333723dd7";
 
+    //快递查询的Appkey
+    public static final String EXPRESS_APPKEY = "2368907b437de8c42787c24604a7964b";
 
+    //快递查询的url:http://v.juhe.cn/exp/index?key=key&com=sf&no=575677355677
+    public static final String EXPRESS_URL = "http://v.juhe.cn";
+
+    //手机号查询的Appkey
+    public static final String PHONE_APPKEY = "2e52743e9cf3130e7c1057b8981d513f";
+    //手机号查询的url:http://apis.juhe.cn/mobile/get?phone=13429667914&key=您申请的KEY
+    public static final String PHONE_URL = "http://apis.juhe.cn";
 
 
     //默认值
@@ -37,5 +46,6 @@ public class StaticClass {
 
     //checkBox的key
     public static final String REMEMBER_PASS="remember_pass";
+
 
 }

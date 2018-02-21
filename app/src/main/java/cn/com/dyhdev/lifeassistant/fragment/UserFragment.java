@@ -41,8 +41,11 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.com.dyhdev.lifeassistant.R;
 import cn.com.dyhdev.lifeassistant.entity.User;
+import cn.com.dyhdev.lifeassistant.retrofit.RetrofitUtils;
+import cn.com.dyhdev.lifeassistant.ui.ExpressActivity;
 import cn.com.dyhdev.lifeassistant.ui.LoginActivity;
 import cn.com.dyhdev.lifeassistant.ui.ModifyPasswordActivity;
+import cn.com.dyhdev.lifeassistant.ui.PhoneActivity;
 import cn.com.dyhdev.lifeassistant.utils.PhotoUtils;
 import cn.com.dyhdev.lifeassistant.utils.SharedUtils;
 import cn.com.dyhdev.lifeassistant.utils.Utils;
@@ -206,7 +209,7 @@ public class UserFragment extends Fragment {
 
     }
 
-    @OnClick({R.id.id_edit_userinfo, R.id.id_profile_image, R.id.id_btn_check_modify, R.id.id_btn_modify_password, R.id.id_btn_exit})
+    @OnClick({R.id.id_edit_userinfo, R.id.id_profile_image, R.id.id_btn_check_modify,R.id.id_tv_logistics_query, R.id.id_tv_location_query, R.id.id_btn_modify_password, R.id.id_btn_exit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             //编辑资料
@@ -222,6 +225,14 @@ public class UserFragment extends Fragment {
             //修改资料
             case R.id.id_btn_check_modify:
                 getUserData();
+                break;
+            //快递查询
+            case R.id.id_tv_logistics_query:
+                startActivity(new Intent(getActivity(), ExpressActivity.class));
+                break;
+            //手机号查询
+            case R.id.id_tv_location_query:
+                startActivity(new Intent(getActivity(), PhoneActivity.class));
                 break;
             //修改密码
             case R.id.id_btn_modify_password:

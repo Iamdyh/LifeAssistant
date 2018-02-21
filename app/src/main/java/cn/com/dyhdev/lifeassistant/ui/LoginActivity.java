@@ -22,7 +22,9 @@ import cn.com.dyhdev.lifeassistant.R;
 import cn.com.dyhdev.lifeassistant.entity.User;
 import cn.com.dyhdev.lifeassistant.utils.SharedUtils;
 import cn.com.dyhdev.lifeassistant.utils.StaticClass;
+import cn.com.dyhdev.lifeassistant.utils.Utils;
 import cn.com.dyhdev.lifeassistant.view.CustomDialog;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * 项目名:     LifeAssistant
@@ -33,20 +35,22 @@ import cn.com.dyhdev.lifeassistant.view.CustomDialog;
  * 描述:       登录
  */
 
-public class LoginActivity extends AppCompatActivity{
+public class LoginActivity extends AppCompatActivity {
 
     @BindView(R.id.id_login_et_user)
     EditText mEtName;
     @BindView(R.id.id_login_et_password)
     EditText mEtPass;
     @BindView(R.id.id_checkbox)     //是否记住密码
-    CheckBox mCheckBox;
+            CheckBox mCheckBox;
     @BindView(R.id.id_btn_login)
     Button mBtnLogin;
     @BindView(R.id.id_btn_register)
     Button mBtnRegister;
     @BindView(R.id.id_tv_fgpassword)  //忘记密码
-    TextView mTVForget;
+            TextView mTVForget;
+    @BindView(R.id.id_login_profile_image)
+    CircleImageView mLoginProfileImage;
 //    private Button mBtnRegister;
 //    private Button mBtnLogin;
 //    private EditText mEtName;
@@ -95,6 +99,7 @@ public class LoginActivity extends AppCompatActivity{
         if (isCheck) {
             mEtName.setText(SharedUtils.getString(this, StaticClass.USERNAME_KEY, StaticClass.DEFAULT_VALUE));
             mEtPass.setText(SharedUtils.getString(this, StaticClass.PASSWORD_KEY, StaticClass.DEFAULT_VALUE));
+            mLoginProfileImage.setImageBitmap(Utils.getImage(this));
         }
 
 
