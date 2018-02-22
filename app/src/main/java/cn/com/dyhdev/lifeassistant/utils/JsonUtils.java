@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.com.dyhdev.lifeassistant.entity.CourierDean;
+import cn.com.dyhdev.lifeassistant.entity.SubMessageText;
+import cn.com.dyhdev.lifeassistant.entity.SubNewsMessage;
 
 /**
  * 项目名:     LifeAssistant
@@ -51,6 +53,11 @@ public class JsonUtils {
         return null;
     }
 
+    /**
+     * 解析手机号归属地Json数据
+     * @param string
+     * @return
+     */
     public static String[] parsingPhoneJson(String string){
         String[] text = new String[5];
         try {
@@ -64,6 +71,46 @@ public class JsonUtils {
                 text[4] = jsonObject.getString("company");
                 return text;
             }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static SubMessageText parsingChatMsgJson(String string){
+
+        try {
+            Log.d(TAG, "parsingChatMsgJson: " + string);
+            JSONObject jsonObject = new JSONObject(string);
+            String jsonText = jsonObject.getString("text");
+            String jsonUrl = null;
+            JSONArray jsonNewsList = null;
+            Log.d(TAG, "parsingChatMsgJson: " + jsonText);
+            if(string.contains("url") && !string.contains("list")){
+                jsonUrl = jsonObject.getString("url");
+            }else if(string.contains("list")){
+                jsonNewsList = jsonObject.getJSONArray("list");
+            }
+            SubMessageText text = new SubMessageText();
+            List<SubNewsMessage> list = new ArrayList<>();
+            if(jsonText != null){
+                text.setText(jsonText);
+                if(jsonUrl != null){
+                    text.setUrl(jsonUrl);
+                }else if(jsonNewsList != null && jsonText.contains("新闻")){
+                    for(int i = 0; i < jsonNewsList.length(); i++){
+                        SubNewsMessage sm = new SubNewsMessage();
+                        JSONObject object = (JSONObject)jsonNewsList.get(i);
+                        sm.setArticle(object.getString("article"));
+                        sm.setSource(object.getString("source"));
+                        sm.setDetailurl(object.getString("detailurl"));
+                        list.add(sm);
+                    }
+                    text.setList(list);
+                }
+                return text;
+            }
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

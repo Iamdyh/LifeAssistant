@@ -8,8 +8,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import cn.com.dyhdev.lifeassistant.entity.CourierDean;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,7 +32,14 @@ public class RetrofitUtils {
     private static final String TAG = "RetrofitUtils";
 
 
-
+    /**
+     * 快递查询get请求
+     * @param url
+     * @param appkey
+     * @param name
+     * @param orderId
+     * @param callback
+     */
     public static void doCourierGetRequest(String url, String appkey, String name, String orderId, Callback<ResponseBody> callback){
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -46,6 +55,13 @@ public class RetrofitUtils {
 
     }
 
+    /**
+     * 手机号归属地查询get请求
+     * @param url
+     * @param appkey
+     * @param phone
+     * @param callback
+     */
     public static void doPhoneGetRequest(String url, String appkey, String phone, Callback<ResponseBody> callback){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(url)
@@ -56,5 +72,14 @@ public class RetrofitUtils {
         call.enqueue(callback);
     }
 
+    public static void doChatPostRequest(String url, String json, Callback<ResponseBody> callback){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(url)
+                .build();
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), json);
+        ChatInterface cf = retrofit.create(ChatInterface.class);
+        Call<ResponseBody> call = cf.getChatMessage(body);
+        call.enqueue(callback);
+    }
 
 }

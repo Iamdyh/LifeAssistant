@@ -65,5 +65,7 @@
     <string name="search_failed">查询失败，请再试一次</string>
     <string name="phone_search">归属地查询</string>
     <string name="phone">手机号</string>
-
+    <string name="send">发送</string>
+    <!--<string name="time_default">2018-02-19 12:05:23</string>-->
+    <string name="voice_name">您好，我是静静，很高兴为您服务！</string>
 </resources>

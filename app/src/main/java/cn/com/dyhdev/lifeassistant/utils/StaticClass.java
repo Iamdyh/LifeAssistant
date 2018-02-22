@@ -34,6 +34,13 @@ public class StaticClass {
     //手机号查询的url:http://apis.juhe.cn/mobile/get?phone=13429667914&key=您申请的KEY
     public static final String PHONE_URL = "http://apis.juhe.cn";
 
+    //图灵机器人Appkey
+    public static final String ROBOT_APPKEY = "749b36ccda4e4d8a9f27017839ae9085";
+    //图灵机器人url:http://www.tuling123.com/openapi/api
+    public static final String ROBOT_URL = "http://www.tuling123.com";
+
+    //天行数据Appkey
+    public static final String NEWS_APPKEY = "9dd70b0db747121c6f0bc737dc299c64";
 
     //默认值
     public static final String DEFAULT_VALUE = "";
@@ -46,6 +53,7 @@ public class StaticClass {
 
     //checkBox的key
     public static final String REMEMBER_PASS="remember_pass";
+
 
 
 }

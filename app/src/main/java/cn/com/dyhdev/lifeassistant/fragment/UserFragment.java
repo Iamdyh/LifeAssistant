@@ -107,7 +107,7 @@ public class UserFragment extends Fragment {
 
     private CustomDialog mDialog;  //自定义dialog
 
-    public static final String PHOTO_IMAGE_FILE_NAME = "imageFile.jpg";
+
     public static final int CAMERA_REQUEST_CODE = 1000;
     public static final int ALBUM_REQUEST_CODE = 1001;
     public static final int RESULT_REQUEST_CODE = 1002;
@@ -120,9 +120,6 @@ public class UserFragment extends Fragment {
     private static final int OUTPUT_X = 480;
     private static final int OUTPUT_Y = 480;
 
-
-
-    private File tempFile = null;
 
     @Nullable
     @Override

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <!--<TextView-->
+        <!--android:id="@+id/id_siri_msg_date"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_margin="5dp"-->
+        <!--android:text="@string/time_default"-->
+        <!--android:textSize="12sp"-->
+        <!--android:visibility="gone"/>-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+        <ImageView
+            android:id="@+id/id_voice_image_siri"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/icon_siri"/>
+        <TextView
+            android:id="@+id/id_voice_tv_siri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+
+            android:layout_marginRight="70dp"
+            android:layout_toRightOf="@id/id_voice_image_siri"
+            android:background="@drawable/chat_siri_bg"
+            android:gravity="center_vertical"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp"
+            android:paddingRight="15dp"
+            android:paddingLeft="18dp"
+            android:text="@string/voice_name"
+            android:autoLink="all"
+            android:textSize="15sp"
+            android:textColor="@color/color_black"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

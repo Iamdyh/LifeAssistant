@@ -81,6 +81,7 @@ public class PhoneActivity extends BaseActivity {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
                     final String string = response.body().string();
+
                     Log.d(TAG, "onResponse: " + string);
                     final String[] res = JsonUtils.parsingPhoneJson(string);
 
