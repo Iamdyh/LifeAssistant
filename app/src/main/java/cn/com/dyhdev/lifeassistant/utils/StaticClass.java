@@ -41,6 +41,8 @@ public class StaticClass {
 
     //天行数据Appkey
     public static final String NEWS_APPKEY = "9dd70b0db747121c6f0bc737dc299c64";
+    //IT资讯url:	http://api.tianapi.com/it/?key=APIKEY&num=10
+    public static final String IT_NEWS_URL = "http://api.tianapi.com";
 
     //默认值
     public static final String DEFAULT_VALUE = "";

@@ -85,8 +85,10 @@
         <activity
             android:name=".ui.ExpressActivity"
             android:label="@string/express_search" />
-        <activity android:name=".ui.PhoneActivity"
-            android:label="@string/phone_search"></activity>
+        <activity
+            android:name=".ui.PhoneActivity"
+            android:label="@string/phone_search" />
+        <activity android:name=".ui.WebViewActivity"></activity>
     </application>
 
 </manifest>

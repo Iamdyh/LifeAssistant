@@ -72,6 +72,29 @@ public class RetrofitUtils {
         call.enqueue(callback);
     }
 
+    /**
+     * IT资讯get请求
+     * @param url
+     * @param appkey
+     * @param num
+     * @param callback
+     */
+    public static void doITNewsGetRequest(String url, String appkey, String num, Callback<ResponseBody> callback){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(url)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ITNewsInterface it = retrofit.create(ITNewsInterface.class);
+        Call<ResponseBody> call = it.getITNewsData(appkey, num);
+        call.enqueue(callback);
+    }
+
+    /**
+     * 语音聊天Post请求
+     * @param url
+     * @param json
+     * @param callback
+     */
     public static void doChatPostRequest(String url, String json, Callback<ResponseBody> callback){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(url)

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">生活助手</string>
     <string name="voice_chat">语音助手</string>
-    <string name="wechat_articles">微信精选</string>
+    <string name="it_articles">IT资讯</string>
     <string name="beauty_albums">美女相册</string>
     <string name="personal_center">个人中心</string>
     <string name="setting">设置</string>
@@ -68,4 +68,5 @@
     <string name="send">发送</string>
     <!--<string name="time_default">2018-02-19 12:05:23</string>-->
     <string name="voice_name">您好，我是静静，很高兴为您服务！</string>
+    <string name="news_source">来源：</string>
 </resources>

@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity{
     private void initData(){
         mTitles = new ArrayList<>();
         mTitles.add(getString(R.string.voice_chat));
-        mTitles.add(getString(R.string.wechat_articles));
+        mTitles.add(getString(R.string.it_articles));
         mTitles.add(getString(R.string.beauty_albums));
         mTitles.add(getString(R.string.personal_center));
 

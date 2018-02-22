@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.com.dyhdev.lifeassistant.entity.CourierDean;
+import cn.com.dyhdev.lifeassistant.entity.ITNews;
 import cn.com.dyhdev.lifeassistant.entity.SubMessageText;
 import cn.com.dyhdev.lifeassistant.entity.SubNewsMessage;
 
@@ -77,6 +78,37 @@ public class JsonUtils {
         return null;
     }
 
+    public static List<ITNews> parsingITNewsJson(String string){
+        List<ITNews> tempList = new ArrayList<>();
+        try {
+            JSONObject jsonObject = new JSONObject(string);
+            JSONArray jsonArray = jsonObject.getJSONArray("newslist");
+            if(jsonArray != null){
+                for(int i = 0; i < jsonArray.length(); i++){
+                    JSONObject json = (JSONObject)jsonArray.get(i);
+                    ITNews itNews = new ITNews();
+                    itNews.setTitle(json.getString("title"));
+                    itNews.setTime(json.getString("ctime"));
+                    itNews.setSource(json.getString("description"));
+                    itNews.setPicUrl(json.getString("picUrl"));
+                    itNews.setUrl(json.getString("url"));
+                    tempList.add(itNews);
+                }
+                return tempList;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
+
+    /**
+     * 解析语音聊天Json数据
+     * @param string
+     * @return
+     */
     public static SubMessageText parsingChatMsgJson(String string){
 
         try {
