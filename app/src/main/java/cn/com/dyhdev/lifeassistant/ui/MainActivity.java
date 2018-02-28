@@ -65,15 +65,17 @@ public class MainActivity extends AppCompatActivity{
      */
     private void initData(){
         mTitles = new ArrayList<>();
-        mTitles.add(getString(R.string.voice_chat));
+
         mTitles.add(getString(R.string.it_articles));
-        mTitles.add(getString(R.string.beauty_albums));
+        mTitles.add(getString(R.string.beauty_welfare));
+        mTitles.add(getString(R.string.voice_chat));
         mTitles.add(getString(R.string.personal_center));
 
         mFragments = new ArrayList<>();
-        mFragments.add(new VoiceFragment());
+
         mFragments.add(new ArticleFragment());
         mFragments.add(new PictureFragment());
+        mFragments.add(new VoiceFragment());
         mFragments.add(new UserFragment());
 
     }
@@ -90,7 +92,7 @@ public class MainActivity extends AppCompatActivity{
         //设置悬浮按钮点击事件
 //        mFabSetting.setOnClickListener(this);
         //设置按钮默认隐藏
-        mFabSetting.setVisibility(View.GONE);
+//        mFabSetting.setVisibility(View.GONE);
 
         //预加载viewpager
         mViewPager.setOffscreenPageLimit(mFragments.size());
@@ -104,8 +106,8 @@ public class MainActivity extends AppCompatActivity{
             //选中状态
             @Override
             public void onPageSelected(int position) {
-                //首页position为0
-                if(position == 0){
+                //首页position为0,语音助手为2
+                if(position == 2){
                     mFabSetting.setVisibility(View.GONE);
                 }else{
                     mFabSetting.setVisibility(View.VISIBLE);
@@ -153,15 +155,4 @@ public class MainActivity extends AppCompatActivity{
                 break;
         }
     }
-
-
-//    @Override
-//    public void onClick(View v) {
-//        switch (v.getId()){
-//            case R.id.id_fab_setting:
-//                Intent intent = new Intent(MainActivity.this, SettingActivity.class);
-//                startActivity(intent);
-//                break;
-//        }
-//    }
 }

@@ -2,6 +2,8 @@ package cn.com.dyhdev.lifeassistant.utils;
 
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -9,6 +11,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.com.dyhdev.lifeassistant.entity.Beauty;
 import cn.com.dyhdev.lifeassistant.entity.CourierDean;
 import cn.com.dyhdev.lifeassistant.entity.ITNews;
 import cn.com.dyhdev.lifeassistant.entity.SubMessageText;
@@ -78,6 +81,12 @@ public class JsonUtils {
         return null;
     }
 
+
+    /**
+     * 解析IT资讯Json数据
+     * @param string
+     * @return
+     */
     public static List<ITNews> parsingITNewsJson(String string){
         List<ITNews> tempList = new ArrayList<>();
         try {
@@ -102,6 +111,28 @@ public class JsonUtils {
 
         return null;
 
+    }
+
+    public static List<Beauty> parsingBeautyDataJson(String string){
+        List<Beauty> tempList = new ArrayList<>();
+
+        try {
+            JSONObject jsonObject = new JSONObject(string);
+            JSONArray jsonArray = jsonObject.getJSONArray("results");
+            if(jsonArray != null){
+                for(int i = 0; i < jsonArray.length(); i++){
+                    JSONObject json = (JSONObject)jsonArray.get(i);
+                    Beauty beauty = new Beauty();
+                    beauty.setUrl(json.getString("url"));
+                    tempList.add(beauty);
+                }
+                return tempList;
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**

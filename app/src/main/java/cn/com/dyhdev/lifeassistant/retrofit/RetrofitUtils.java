@@ -90,6 +90,23 @@ public class RetrofitUtils {
     }
 
     /**
+     * 美女图片get请求
+     * @param url
+     * @param welfare
+     * @param num
+     * @param callback
+     */
+    public static void doBeautyImageGetRequest(String url, String welfare, int num, Callback<ResponseBody> callback){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(url)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        BeautyInterface bf = retrofit.create(BeautyInterface.class);
+        Call<ResponseBody> call = bf.getBeautyImage(welfare, num);
+        call.enqueue(callback);
+    }
+
+    /**
      * 语音聊天Post请求
      * @param url
      * @param json

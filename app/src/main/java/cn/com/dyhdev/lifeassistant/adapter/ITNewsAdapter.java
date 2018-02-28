@@ -9,12 +9,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import cn.com.dyhdev.lifeassistant.R;
 import cn.com.dyhdev.lifeassistant.entity.ITNews;
 import cn.com.dyhdev.lifeassistant.retrofit.OnItemClickListener;
-import cn.com.dyhdev.lifeassistant.utils.PicassoUtils;
+import cn.com.dyhdev.lifeassistant.utils.GlideUtils;
+
 
 /**
  * 项目名:     LifeAssistant
@@ -30,7 +33,7 @@ public class ITNewsAdapter extends RecyclerView.Adapter<ITNewsAdapter.ItNewsView
     private List<ITNews> mList;
     private Context mContext;
     private OnItemClickListener mOnItemClickListener;
-    private int width=230, height=230;
+    private int width=240, height=240;
 
     public ITNewsAdapter(List<ITNews> mList, Context mContext) {
         this.mList = mList;
@@ -52,7 +55,8 @@ public class ITNewsAdapter extends RecyclerView.Adapter<ITNewsAdapter.ItNewsView
         holder.mTvTitle.setText(mList.get(position).getTitle());
         holder.mTvSource.setText(mContext.getString(R.string.news_source) + mList.get(position).getSource());
         holder.mTvTime.setText(mList.get(position).getTime());
-        PicassoUtils.loadImageViewBySize(mContext, mList.get(position).getPicUrl(), width, height, holder.mImageView);
+
+        Glide.with(mContext).load(mList.get(position).getPicUrl()).override(width,height).into(holder.mImageView);
         if(mOnItemClickListener != null){
             holder.mLayout.setOnClickListener(new View.OnClickListener() {
                 @Override

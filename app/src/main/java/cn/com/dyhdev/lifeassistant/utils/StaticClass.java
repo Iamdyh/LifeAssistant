@@ -44,6 +44,10 @@ public class StaticClass {
     //IT资讯url:	http://api.tianapi.com/it/?key=APIKEY&num=10
     public static final String IT_NEWS_URL = "http://api.tianapi.com";
 
+    //干货妹子url: http://gank.io/api/data/福利/50/1
+    public static final String BEAUTY_URL = "http://gank.io";
+
+
     //默认值
     public static final String DEFAULT_VALUE = "";
 
