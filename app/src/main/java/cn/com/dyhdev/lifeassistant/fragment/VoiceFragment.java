@@ -15,6 +15,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.gson.Gson;
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechError;
+import com.iflytek.cloud.SpeechSynthesizer;
+import com.iflytek.cloud.SynthesizerListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -63,6 +67,9 @@ public class VoiceFragment extends Fragment {
     private List<Message> mList = new ArrayList<>();
     private VoiceAdapter mAdapter;
 
+    private SpeechSynthesizer mTts;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -82,6 +89,12 @@ public class VoiceFragment extends Fragment {
     }
 
     private void initView(){
+
+        mTts = SpeechSynthesizer.createSynthesizer(getActivity(), null);
+        mTts.setParameter(SpeechConstant.VOICE_NAME, "xiaoyan");
+        mTts.setParameter(SpeechConstant.SPEED, "50");
+        mTts.setParameter(SpeechConstant.VOLUME, "50");
+        mTts.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_CLOUD); //设置云端
 
 
         mAdapter = new VoiceAdapter(mList, getActivity());
@@ -132,6 +145,7 @@ public class VoiceFragment extends Fragment {
                                                         "来源：" + subText.getList().get(i).getSource() + "\n" +
                                                         "详细内容：" + subText.getList().get(i).getDetailurl();
                                         addLeftMsg(string);
+
                                     }
                                 }
                             }
@@ -156,13 +170,25 @@ public class VoiceFragment extends Fragment {
      * @param text
      */
     private void addLeftMsg(String text){
+
+        //判断语音模式是否打开
+        boolean isSpeak = SharedUtils.getBoolean(getActivity(), "isSpeak", false);
+        if(isSpeak){
+            startSpeak(text);
+
+        }
         Message message = new Message();
         message.setType(VoiceAdapter.TYPE_RECEIVED);
         message.setmContent(text);
         mAdapter.addData(message);
         mRecyclerView.smoothScrollToPosition(mAdapter.getItemCount() - 1);
+
     }
 
+    /**
+     * 右边的消息
+     * @param text
+     */
     private void addRightMsg(String text){
         Message message = new Message();
         message.setType(VoiceAdapter.TYPE_SEND);
@@ -170,6 +196,48 @@ public class VoiceFragment extends Fragment {
         mAdapter.addData(message);
         mRecyclerView.smoothScrollToPosition(mAdapter.getItemCount() - 1);
     }
+
+    private void startSpeak(String string){
+        mTts.startSpeaking(string, mSynListener);
+    }
+
+    private SynthesizerListener mSynListener = new SynthesizerListener() {
+        @Override
+        public void onSpeakBegin() {
+
+        }
+
+        @Override
+        public void onBufferProgress(int i, int i1, int i2, String s) {
+
+        }
+
+        @Override
+        public void onSpeakPaused() {
+
+        }
+
+        @Override
+        public void onSpeakResumed() {
+
+        }
+
+        @Override
+        public void onSpeakProgress(int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onCompleted(SpeechError speechError) {
+
+        }
+
+        @Override
+        public void onEvent(int i, int i1, int i2, Bundle bundle) {
+
+        }
+    };
+
 
     @Override
     public void onDestroyView() {

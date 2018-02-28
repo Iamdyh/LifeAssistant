@@ -47,6 +47,8 @@ public class StaticClass {
     //干货妹子url: http://gank.io/api/data/福利/50/1
     public static final String BEAUTY_URL = "http://gank.io";
 
+    //科大讯飞AppId
+    public static final String TTS_APPID = "5a96548d";
 
     //默认值
     public static final String DEFAULT_VALUE = "";

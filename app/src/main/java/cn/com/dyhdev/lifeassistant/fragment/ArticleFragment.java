@@ -58,7 +58,7 @@ public class ArticleFragment extends Fragment {
     private ITNewsAdapter mAdapter;
     private List<ITNews> mCurrentList = new ArrayList<>();
     private List<ITNews> mLastList = new ArrayList<>();
-    private String num = "20";       //默认加载10条数据
+    private String num = "30";       //默认加载30条数据
 
     private boolean isFirst = false;
 

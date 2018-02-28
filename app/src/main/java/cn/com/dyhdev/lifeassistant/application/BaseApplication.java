@@ -3,6 +3,8 @@ package cn.com.dyhdev.lifeassistant.application;
 import android.app.Application;
 
 //腾讯bugly
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechUtility;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import cn.bmob.v3.Bmob;
@@ -28,6 +30,11 @@ public class BaseApplication extends Application {
         CrashReport.initCrashReport(getApplicationContext(), StaticClass.BUGLY_APPID, true);
 
         //初始化Bomb
-        Bmob.initialize(this, StaticClass.BOMB_APPID);
+        Bmob.initialize(getApplicationContext(), StaticClass.BOMB_APPID);
+
+        //初始化科大讯飞
+        // 将“12345678”替换成您申请的APPID，申请地址：http://www.xfyun.cn
+        // 请勿在“=”与appid之间添加任何空字符或者转义符
+        SpeechUtility.createUtility(this, SpeechConstant.APPID +"=" + StaticClass.TTS_APPID);
     }
 }
