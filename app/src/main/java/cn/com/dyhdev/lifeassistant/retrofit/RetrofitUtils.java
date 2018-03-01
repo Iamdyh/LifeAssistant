@@ -17,6 +17,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * 项目名:     LifeAssistant
@@ -104,6 +105,33 @@ public class RetrofitUtils {
         BeautyInterface bf = retrofit.create(BeautyInterface.class);
         Call<ResponseBody> call = bf.getBeautyImage(welfare, num);
         call.enqueue(callback);
+    }
+
+    /**
+     * 版本更新get请求
+     * @param url
+     * @param callback
+     */
+    public static void doVersionGetRequest(String url, Callback<ResponseBody> callback){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(url)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        VersionUpdateInterface vf = retrofit.create(VersionUpdateInterface.class);
+        Call<ResponseBody> call = vf.getVersionInfo();
+        call.enqueue(callback);
+    }
+
+    public static void doDownloadApkGetRequest(String baseUrl, String url, Callback<ResponseBody> callback){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        DownloadApkInterface df = retrofit.create(DownloadApkInterface.class);
+        Call<ResponseBody> call = df.downloadApk(url);
+        call.enqueue(callback);
+
     }
 
     /**

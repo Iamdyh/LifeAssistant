@@ -69,4 +69,10 @@
     <!--<string name="time_default">2018-02-19 12:05:23</string>-->
     <string name="voice_name">您好，我是静静，很高兴为您服务！</string>
     <string name="news_source">来源：</string>
+    <string name="speak_switch">语音模式</string>
+    <string name="version_update">版本更新</string>
+    <string name="version_name_default">当前版本：</string>
+    <string name="version_download">下载更新</string>
+
+
 </resources>

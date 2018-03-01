@@ -73,15 +73,6 @@ public class GuideActivity extends AppCompatActivity {
      */
     private void initview() {
 
-        //mViewPager = (ViewPager) findViewById(R.id.id_guide_viewpager);
-
-//        point_01 = (ImageView) findViewById(R.id.id_img_point_01);
-//        point_02 = (ImageView) findViewById(R.id.id_img_point_02);
-//        point_03 = (ImageView) findViewById(R.id.id_img_point_03);
-//        point_04 = (ImageView) findViewById(R.id.id_img_point_04);
-
-//        image_jump = (ImageView) findViewById(R.id.id_img_jump);
-//        image_jump.setOnClickListener(this);
 
         //设置小圆点的默认图片
         setPointImage(true, false, false, false);
@@ -147,25 +138,7 @@ public class GuideActivity extends AppCompatActivity {
 
     }
 
-  /*  @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.id_btn_start:
-            case R.id.id_img_jump:
-                startActivity(new Intent(this, LoginActivity.class));
-                finish();
-                break;
-        }
-    }*/
 
-//    @OnClick({R.id.id_btn_start, R.id.id_img_jump})
-//    public void onClick(View view) {
-//        switch (view.getId()) {
-//            case R.id.id_btn_start:
-//            case R.id.id_img_jump:
-//
-//        }
-//    }
 
     @OnClick(R.id.id_img_jump)
     public void onViewClicked(View view) {
@@ -180,13 +153,6 @@ public class GuideActivity extends AppCompatActivity {
     }
 
 
-
-   /* @OnClick(R.id.id_btn_start)
-    public void onViewClicked(View view) {
-        startActivity(new Intent(this, LoginActivity.class));
-        finish();
-
-    }*/
 
 
     class GuideAdapter extends PagerAdapter {

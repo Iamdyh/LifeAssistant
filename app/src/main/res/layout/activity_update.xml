@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cn.com.dyhdev.lifeassistant.ui.UpdateActivity"
+    android:orientation="vertical"
+    android:gravity="center">
+
+
+    <com.daimajia.numberprogressbar.NumberProgressBar
+        android:id="@+id/id_number_progress_bar"
+        style="@style/NumberProgressBar_Default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp" />
+
+    <TextView
+        android:id="@+id/id_update_size_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="---- / ----"
+        android:textColor="@color/colorPrimary"
+        android:textSize="22sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="下载过程中请勿离开"/>
+
+
+
+</LinearLayout>

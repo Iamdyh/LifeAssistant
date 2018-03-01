@@ -11,6 +11,7 @@
         android:background="@android:color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:layout_marginTop="10dp"
         android:paddingLeft="15dp">
         <TextView
             android:layout_width="0dp"
@@ -26,6 +27,47 @@
             android:layout_weight="1"
             android:layout_marginRight="10dp"/>
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_gray">
+
+    </View>
+
+    <LinearLayout
+        android:id="@+id/id_setting_ll_update"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/white"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="15dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/version_update"
+            android:textColor="@color/color_black"
+            android:textSize="18sp"/>
+        <TextView
+            android:id="@+id/id_version_code_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:text="@string/version_name_default"
+            android:textSize="14sp"
+            android:textColor="#454545"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_gray">
+
+    </View>
 
 
 

@@ -62,6 +62,7 @@ public class StaticClass {
     //checkBox的key
     public static final String REMEMBER_PASS="remember_pass";
 
-
+    //版本更新url(会随时变动):http://192.168.1.115:8080/dyh/config.json
+    public static final String VERSION_URL = "http://192.168.1.115:8080";
 
 }

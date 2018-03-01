@@ -16,6 +16,7 @@ import cn.com.dyhdev.lifeassistant.entity.CourierDean;
 import cn.com.dyhdev.lifeassistant.entity.ITNews;
 import cn.com.dyhdev.lifeassistant.entity.SubMessageText;
 import cn.com.dyhdev.lifeassistant.entity.SubNewsMessage;
+import cn.com.dyhdev.lifeassistant.entity.Version;
 
 /**
  * 项目名:     LifeAssistant
@@ -129,6 +130,26 @@ public class JsonUtils {
                 return tempList;
             }
 
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 解析版本更新Json数据
+     * @param string
+     * @return
+     */
+    public static Version parsingVersionJson(String string){
+        Version version = new Version();
+        try {
+            JSONObject jsonObject = new JSONObject(string);
+            version.setVersionName(jsonObject.getString("versionName"));
+            version.setVersionCode(jsonObject.getInt("versionCode"));
+            version.setContent(jsonObject.getString("content"));
+            version.setUrl(jsonObject.getString("url"));
+            return version;
         } catch (JSONException e) {
             e.printStackTrace();
         }
