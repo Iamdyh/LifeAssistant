@@ -73,6 +73,7 @@
     <string name="version_update">版本更新</string>
     <string name="version_name_default">当前版本：</string>
     <string name="version_download">下载更新</string>
+    <string name="my_location">我的位置</string>
 
 
 </resources>
