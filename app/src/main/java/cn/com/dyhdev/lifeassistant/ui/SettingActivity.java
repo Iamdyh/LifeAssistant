@@ -51,6 +51,8 @@ public class SettingActivity extends BaseActivity {
     LinearLayout mSettingLlUpdate;
     @BindView(R.id.id_version_code_tv)
     TextView mVersionCodeTv;
+    @BindView(R.id.id_setting_ll_location)
+    LinearLayout mSettingLlLocation;
 
     private String versionName;
     private int versionCode;
@@ -76,7 +78,7 @@ public class SettingActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.id_setting_speak_switch, R.id.id_setting_ll_speak, R.id.id_setting_ll_update})
+    @OnClick({R.id.id_setting_speak_switch, R.id.id_setting_ll_speak, R.id.id_setting_ll_update, R.id.id_setting_ll_location})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             //语音开关
@@ -94,9 +96,10 @@ public class SettingActivity extends BaseActivity {
              * 4、跳转到更新界面。
              */
             case R.id.id_setting_ll_update:
-
                 getVersionData();
-
+                break;
+            case R.id.id_setting_ll_location:
+                startActivity(new Intent(SettingActivity.this, LocationActivity.class));
                 break;
             case R.id.id_setting_ll_speak:
                 break;
@@ -104,7 +107,7 @@ public class SettingActivity extends BaseActivity {
     }
 
 
-    private void getVersionData(){
+    private void getVersionData() {
         RetrofitUtils.doVersionGetRequest(StaticClass.VERSION_URL, new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -117,10 +120,10 @@ public class SettingActivity extends BaseActivity {
                         @Override
                         public void run() {
                             int code = version.getVersionCode();
-                            if(code > versionCode){
+                            if (code > versionCode) {
                                 url = version.getUrl();
                                 showUpdateDialog(version.getContent());
-                            }else{
+                            } else {
                                 Toast.makeText(SettingActivity.this, "当前是最新版本", Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -140,7 +143,7 @@ public class SettingActivity extends BaseActivity {
     /**
      * 展示升级提示框
      */
-    private void showUpdateDialog(String content){
+    private void showUpdateDialog(String content) {
         new AlertDialog.Builder(this)
                 .setTitle("有新版本！")
                 .setMessage(content)
@@ -170,4 +173,7 @@ public class SettingActivity extends BaseActivity {
         versionName = info.versionName;
     }
 
+    @OnClick(R.id.id_setting_ll_location)
+    public void onViewClicked() {
+    }
 }

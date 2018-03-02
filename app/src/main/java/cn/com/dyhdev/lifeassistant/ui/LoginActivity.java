@@ -1,8 +1,14 @@
 package cn.com.dyhdev.lifeassistant.ui;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -12,6 +18,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,12 +60,11 @@ public class LoginActivity extends AppCompatActivity {
             TextView mTVForget;
     @BindView(R.id.id_login_profile_image)
     CircleImageView mLoginProfileImage;
-//    private Button mBtnRegister;
-//    private Button mBtnLogin;
-//    private EditText mEtName;
-//    private EditText mEtPass;
-//    private CheckBox mCheckBox;
-//    private TextView mTVForget;
+
+    private String[] permissions = new String[]{Manifest.permission.READ_PHONE_STATE, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    private List<String> mPermissionList = new ArrayList<>();
+    private boolean mShowRequestPermission = true;//用户是否禁止权限
 
     private String username;
     private String password;
@@ -70,24 +78,12 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        autoObtainPermission();
         myUser = new User();
         initView();
     }
 
     private void initView() {
-//        mBtnRegister = (Button) findViewById(R.id.id_btn_register);
-//        mBtnRegister.setOnClickListener(this);
-//
-//        mEtName = (EditText) findViewById(R.id.id_login_et_user);
-//        mEtPass = (EditText) findViewById(R.id.id_login_et_password);
-//        mTVForget = (TextView) findViewById(R.id.id_tv_fgpassword);
-//        mTVForget.setOnClickListener(this);
-//
-//        mBtnLogin = (Button) findViewById(R.id.id_btn_login);
-//
-//        mBtnLogin.setOnClickListener(this);
-//
-//        mCheckBox = (CheckBox) findViewById(R.id.id_checkbox);
 
         dialog = new CustomDialog(this, 100, 100, R.layout.dialog_loading, R.style.Theme_dialog, Gravity.CENTER, R.style.pop_anim_style);
         //屏幕外点击无效
@@ -120,20 +116,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-//    @Override
-//    public void onClick(View v) {
-//        switch (v.getId()) {
-//            case R.id.id_btn_login:
-//
-//                break;
-//            case R.id.id_btn_register:
-//
-//                break;
-//            case R.id.id_tv_fgpassword:
-//
-//                break;
-//        }
-//    }
+
 
     /**
      * 获得用户的数据
@@ -210,4 +193,52 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    private void autoObtainPermission(){
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            //判断哪些权限未授予
+            mPermissionList.clear();
+            for(int i = 0; i < permissions.length; i++){
+                if(ContextCompat.checkSelfPermission(this, permissions[i]) != PackageManager.PERMISSION_GRANTED){
+                    //未授予的权限存储到mPerrrmissionList中
+                    mPermissionList.add(permissions[i]);
+                }
+            }
+
+            //判断是否为空
+            if(mPermissionList.isEmpty()){
+                //未授予的权限为空，表示都授予了
+            }else{
+                //请求权限方法
+                String[] permissions = mPermissionList.toArray(new String[mPermissionList.size()]);
+                ActivityCompat.requestPermissions(this, permissions, 1);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode){
+            case 1:
+                for(int i = 0; i < grantResults.length; i++){
+                    if(grantResults[i] != PackageManager.PERMISSION_GRANTED){
+
+                        finish();
+//                        //判断是否勾选禁止后不再询问
+//                        boolean showRequestPermission = ActivityCompat.shouldShowRequestPermissionRationale(LoginActivity.this, permissions[i]);
+//                        if(showRequestPermission){
+//                            autoObtainPermission(); //重新申请权限
+//                            return;
+//                        }else{
+//                            mShowRequestPermission = false;
+//                        }
+                    }
+                }
+
+                break;
+            default:
+                break;
+        }
+    }
 }

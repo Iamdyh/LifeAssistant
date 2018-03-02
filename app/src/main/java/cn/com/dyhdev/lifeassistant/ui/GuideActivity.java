@@ -83,6 +83,7 @@ public class GuideActivity extends AppCompatActivity {
 
 
 
+
         //给buttn设置点击事件
         view_04.findViewById(R.id.id_btn_start).setOnClickListener(new View.OnClickListener() {
             @Override

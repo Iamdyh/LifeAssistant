@@ -6,11 +6,10 @@
     android:gravity="center">
 
 
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Three"
-        android:textSize="50sp"/>
+        android:background="@drawable/bg_03"/>
 
 
 </LinearLayout>

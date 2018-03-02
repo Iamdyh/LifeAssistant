@@ -8,6 +8,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
 //腾讯bugly
+import com.baidu.mapapi.SDKInitializer;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechUtility;
 import com.tencent.bugly.crashreport.CrashReport;
@@ -34,8 +35,6 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-
-
         //初始化腾讯bugly：logcat中TAG = CrashReportInfo
         CrashReport.initCrashReport(getApplicationContext(), StaticClass.BUGLY_APPID, true);
 
@@ -47,6 +46,8 @@ public class BaseApplication extends Application {
         // 请勿在“=”与appid之间添加任何空字符或者转义符
         SpeechUtility.createUtility(this, SpeechConstant.APPID +"=" + StaticClass.TTS_APPID);
 
+        //初始化百度地图
+        SDKInitializer.initialize(getApplicationContext());
 
 
     }
